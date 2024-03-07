@@ -1,0 +1,149 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    flex: 1;
+    padding: 60px;
+}
+
+.form h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+.form h1 svg {
+    height: 30px;
+    width: 30px;
+}
+
+.form_inputs{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+    font-weight: 400;
+    color: var(--silver);
+    position: relative;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+label::after{
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s;
+    width: 100%;
+    height: 2px;
+    background: var(--blue);
+}
+
+
+label:focus-within, label.active {
+    color: var(--blue);
+}
+
+label:focus-within::after, label.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+label input {
+    font-size: 18px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+label input::placeholder {
+    color: var(--silver);
+}
+
+#label_password{
+  justify-content: space-between;
+}
+
+.form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    align-self: center;
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--blue);
+    border-radius: 6px;
+    border: 0;
+    transition: all 0.4s;
+}
+
+.form button:hover{
+    background: var(--blue-light)
+}
+
+.form button svg {
+    width: 20px;
+    height: 20px;
+}
+ #buttom{
+    color: white;
+    background-color:#286cb0;
+    transition: 0.7s;
+    width: 280px;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #286cb0;
+ }
+
+ #buttom:hover {
+    transform: scale(1.1); /* Move para cima quando o mouse passa por cima */
+  }
+
+ .logo-ethan{
+    width: 420px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 50px;
+ }
+ .contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+ }
+
+ #link{
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+    transition: 0.8s;
+ }
+ #link:hover {
+    transform: scale(1.1); /* Move para cima quando o mouse passa por cima */
+  }
+
+  .content{
+    display: flex;
+    justify-content: space-between;
+  }

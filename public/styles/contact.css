@@ -1,0 +1,54 @@
+.informacao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #173358;
+    color: var(--white);
+    padding: 60px;
+    border-radius: 0 10px 10px 0;
+}
+
+.informacao h1 {
+    font-size: 24px;
+}
+
+.informacao_contato {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.informacao_contato > div {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.informacao_contato > div svg {
+    width: 24px;
+    height: 24px;
+}
+
+.informacao_contato > div svg path{
+    fill: var(--silver);
+}
+
+.redes_sociais {
+    display: flex;
+    column-gap: 32px;
+}
+
+.redes_sociais svg{
+    width: 32px;
+    height: 32px;
+
+    transition: all 0.4s;
+}
+
+.redes_sociais a:hover svg{
+   transform: scale(1.2);
+}
+
+.redes_sociais svg path{
+    fill: var(--silver);
+}

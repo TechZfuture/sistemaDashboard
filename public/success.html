@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulário HTML</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles/global.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="centered">
+      <div id="iframe" class="fullscreen"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBjk40Nhp2TT7TO2tX3f4CpaTmFwghcwMA",
+        authDomain: "ethandashboards.firebaseapp.com",
+        projectId: "ethandashboards",
+        storageBucket: "ethandashboards.appspot.com",
+        messagingSenderId: "1057919709994",
+        appId: "1:1057919709994:web:bda8f43bc4c6a58f2da453",
+        measurementId: "G-JZW594J49M",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      let auth = firebase.auth();
+      const db = firebase.firestore();
+
+      // Função para buscar o ID no Firestore e definir o src do iframe
+      function setIframeSrc() {
+        const iframe = document.getElementById("iframe");
+
+        // Buscar automaticamente o primeiro documento da coleção "users"
+        db.collection("users")
+          .limit(1)
+          .get()
+          .then((snapshot) => {
+            if (!snapshot.empty) {
+              // Usar o primeiro documento retornado
+              const doc = snapshot.docs[0];
+              const dadoDoFirestore = doc.data();
+              console.log(dadoDoFirestore);
+
+              // Substituir 'seu-campo-no-dado' pelo campo que contém o URL no seu documento Firestore
+              iframe.innerHTML = dadoDoFirestore.iframe;
+            } else {
+              console.log("Nenhum documento encontrado na coleção 'users'.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar dados no Firestore:", error);
+          });
+      }
+
+      // Aguardar o carregamento completo da página
+      document.addEventListener("DOMContentLoaded", function () {
+        // Chamar a função para definir o src do iframe quando a página for carregada
+        setIframeSrc();
+      });
+    </script>
+  </body>
+</html>

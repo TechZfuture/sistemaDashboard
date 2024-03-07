@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ethan</title>
+    <link rel="icon" type="image/x-icon" href="./img/ethan branco.PNG" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Usando o autenticador do firebase no código -->
+    <div id="app">
+      <main>
+        <form class="form">
+          <h1>
+            <p>LOGIN</p>
+            <img style="height: 32px;" src="./img/icons8-nova-mensagem.gif" alt="">
+          </h1>
+
+          <div class="form_inputs">
+            <label id="label_email">
+              Email
+              <input
+                type="email"
+                name="email"
+                placeholder="Digite o seu email"
+                onblur="blurInput(this)"
+              />
+            </label>
+
+            <label id="label_password">
+              Senha
+              <div class="content">
+                <input
+                  type="password"
+                  name="password"
+                  id="passwordInput"
+                  placeholder="Digite a sua senha"
+                  onblur="blurInput(this)"
+                />
+                <i id="showPasswordIcon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+              </div>
+            </label>
+          </div>
+
+          <button
+            id="buttom"
+            type="submit"
+            onclick="login()"
+            onclick="togglePasswordVisibility()"
+          >
+            <p>Entrar</p>
+            <svg
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#EDF1F7"
+                d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
+              ></path>
+            </svg>
+          </button>
+
+          <div class="contato">
+            <!-- <a
+              href="https://ethangroup.com.br/?fbclid=PAAaZt9Ah4h0U0KFKvEZr-2qBBj1_e4I7HGe5tQ0L2K9-NHKdIQpyZrAEZnAI"
+              target="_blank"
+              id="link"
+            >
+              Conheça nossa empresa!
+            </a> -->
+          </div>
+        </form>
+
+        <div class="informacao">
+          <div class="informacao_contato">
+            <div>
+              <img
+                class="logo-ethan"
+                src="./img/ethan.logo-removebg-preview.png"
+                alt="Logo Ethan"
+              />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
