@@ -2,6 +2,8 @@
 @import url("./form.css");
 @import url("./contact.css");
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -21,7 +23,7 @@ button,
 a,
 input {
   color: var(--text);
-  font: 400 1rem "Open Sans", sans-serif;
+  font: 400 1rem "Montserrat", sans-serif;
 }
 
 a {
@@ -47,4 +49,53 @@ button:hover {
   .informacao{
     display: none;
   }
+
+  hr{
+    display: none;
+  }
+}
+
+h2{
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+.form1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60vw;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 13%;
+
+  background-color: #173358;
+
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#iframe-container{
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#iframe-container div {
+  margin-bottom: 20px; /* Adiciona margem na parte inferior de cada div */
+  padding: 10px; /* Adiciona preenchimento dentro de cada div */
+  border: 1px solid #ccc; /* Adiciona uma borda em torno de cada div */
+  border-radius: 5px; /* Adiciona bordas arredondadas */
+  background-color: #276EB5;
+  transition: 0.4s all;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+#iframe-container div:hover{
+  transform: scale(1.1);
+  background-color: #284e80 ;
 }

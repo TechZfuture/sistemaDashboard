@@ -2,8 +2,8 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Formulário HTML</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>Ethan</title>
+    <link rel="icon" type="image/x-icon" href="./img/ethan branco.PNG" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="styles/global.css" />
@@ -15,9 +15,26 @@
     />
   </head>
 
-  <body>
+  <body style="background-image: url('./img/imagem1.jpg');">
     <div class="centered">
       <div id="iframe" class="fullscreen"></div>
+    </div>
+
+    <div class="form1">
+      <div id="iframe-container"></div>
+      <hr style="rotate:(90deg); height: 300px;">
+      <div class="informacao">
+        
+        <div class="informacao_contato">
+          <div>
+            <img
+              class="logo-ethan"
+              src="./img/ethan.logo-removebg-preview.png"
+              alt="Logo Ethan"
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
@@ -42,26 +59,79 @@
       // Função para buscar o ID no Firestore e definir o src do iframe
       function setIframeSrc() {
         const iframe = document.getElementById("iframe");
+        const iframeContainer = document.getElementById("iframe-container");
 
         // Buscar automaticamente o primeiro documento da coleção "users"
         db.collection("users")
-          .limit(1)
           .get()
-          .then((snapshot) => {
-            if (!snapshot.empty) {
-              // Usar o primeiro documento retornado
-              const doc = snapshot.docs[0];
-              const dadoDoFirestore = doc.data();
-              console.log(dadoDoFirestore);
+          .then((querySnapshot) => {
+            const user = auth.currentUser;
+            console.log("aqui", user.uid);
 
-              // Substituir 'seu-campo-no-dado' pelo campo que contém o URL no seu documento Firestore
-              iframe.innerHTML = dadoDoFirestore.iframe;
-            } else {
-              console.log("Nenhum documento encontrado na coleção 'users'.");
-            }
-          })
-          .catch((error) => {
-            console.error("Erro ao buscar dados no Firestore:", error);
+            querySnapshot.forEach((doc) => {
+              // Para cada documento na coleção "Users"
+              // Acessar a subcoleção "iframes"
+              console.log(doc.id);
+
+              if (doc.id === user.uid) {
+                // Buscar o documento correspondente ao usuário autenticado
+                db.collection("users")
+                  .doc(user.uid)
+                  .collection("iframes")
+                  .get()
+                  .then((subCollectionSnapshot) => {
+                    if (!subCollectionSnapshot.empty) {
+                      // A subcoleção 'iframes' existe para o usuário autenticado
+                      subCollectionSnapshot.forEach((subDoc) => {
+                        const dadoDoFirestore = subDoc.data();
+                        console.log(dadoDoFirestore);
+
+                        // Criar a div para envolver os elementos
+                        const divElement = document.createElement("div");
+
+                        // Criar elementos HTML
+                        const nameElement = document.createElement("h1");
+                        const linkElement = document.createElement("a");
+
+                        // Definir os atributos do título e torná-lo clicável
+                        nameElement.textContent = dadoDoFirestore.name;
+                        nameElement.style.cursor = "pointer"; // Altera o cursor para indicar clicabilidade
+                        nameElement.addEventListener("click", function () {
+                          window.location.href = dadoDoFirestore.iframe; // Redireciona ao clicar no título
+                        });
+
+                        // Definir os atributos do link
+                        linkElement.href = dadoDoFirestore.iframe;
+                        linkElement.textContent =
+                          "Link: " + dadoDoFirestore.iframe;
+                        linkElement.style.display = "none"; // Oculta a tag a
+
+                        // Adicionar os elementos à div
+                        divElement.appendChild(nameElement);
+                        divElement.appendChild(linkElement);
+
+                        // Adicionar a div ao contêiner na página
+                        iframeContainer.appendChild(divElement);
+
+                        // Adicionar quebra de linha para separar as divs
+                        iframeContainer.appendChild(
+                          document.createElement("br")
+                        );
+                      });
+                    } else {
+                      console.log(
+                        "Nenhuma subcoleção 'iframes' encontrada para o usuário autenticado."
+                      );
+                    }
+                  })
+                  .catch((error) => {
+                    console.error(
+                      "Erro ao buscar subcoleção 'iframes' para o usuário autenticado:",
+                      error
+                    );
+                  });
+              }
+            });
           });
       }
 
